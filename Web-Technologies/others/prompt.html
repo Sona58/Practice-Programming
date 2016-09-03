@@ -1,0 +1,20 @@
+<html>
+<head><title>Prompt</title></head>
+<body onLoad="hio()">
+<script>
+function hio()
+{
+var a=prompt("Please enter a number:","");
+if(isNaN(a) || a=="")
+{
+alert("Please Enter a Valid Number");
+hio();
+}
+else{
+alert(a);
+document.write(a);
+}
+}
+</script>
+</body>
+</html>

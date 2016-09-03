@@ -1,0 +1,150 @@
+<html>
+<head><title>Logics</title></head>
+<body>
+<script>
+function check(a)
+{
+	if(a=='')
+	{
+		alert("Invalid Input.");
+		return false;
+	}
+}
+
+function prime()
+{
+	var a=prompt("Enter number to check.","");
+	check(a);
+	a=+a;
+	for(var i=2;i<a;i++)
+	{
+		if(a%i==0)
+		{
+			f=0;
+			break;	
+		}
+		else
+		{
+			f=1;
+		}
+	}	
+	if(f==0)
+	{
+		alert(a+" is not a Prime number.");
+	}
+	else
+	{
+		alert(a+" is a Prime number.");
+	}
+}
+
+function odd()
+{
+	var a=prompt("Enter the limit for the series.","");
+	check(a);
+	a=+a;
+	var b=1;
+	for(var i=0;i<a;)
+	{
+		if(b%2!=0)
+		{
+			document.write(b=" ");
+			i++;
+		}
+		b++;
+	}
+}
+
+function even()
+{
+	var a=prompt("Enter the limit for the series.","");
+	check(a);
+	a=+a;
+	var b=1;
+	for(var i=0;i<a;)
+	{
+		if(b%2==0)
+		{
+			document.write(b+" ");
+			i++;
+		}
+		b++;
+	}
+}
+
+function fact()
+{
+	var a=prompt("Enter the number.","");
+	check(a);
+	a=+a;
+	var f=1;
+	for (var c=1;c<=a;c++)
+	{
+    		f=f*c;
+	}
+	alert("Factorial is "+f);
+}
+
+function fabo()
+{
+	var a=prompt("Enter the number.","");
+	check(a);
+	a=+a;
+	var b=0,c=1;
+	document.write(b+" "+c);
+	while(a>0)
+	{
+		d=b+c;
+		document.write(" "+d);
+		b=c;
+		c=d;
+		a--;
+	}
+}
+
+function pali()
+{
+	var a=prompt("Enter the number.","");
+	check(a);
+	a=+a;
+	var t=a,r=0;
+ 	while(t>0)
+   	{
+      		r=r*10;
+      		r=r+(t%10);
+      		t=parseInt(t/10);
+   	}
+	if(a==r)
+      		alert(a+" is a palindrome number.");
+   	else
+      		alert(a+" is not a palindrome number.");
+}
+
+function pali1()
+{
+	var a=prompt("Enter the number.","");
+	check(a);
+	a=a.toLowerCase();
+	var revStr="";
+   	var i=a.length;
+   	for(var j=i;j>=0;j--)
+	{
+      		revStr=revStr+a.charAt(j);
+   	}
+   	if(a==revStr)
+      		alert(a+" is Palindrome");
+	else
+      		alert(a+" is not a Palindrome");
+}
+</script>
+<form name="1">
+<input type="radio" name="r" value="prime" onclick="prime()">Prime Numbers</br>
+<input type="radio" name="r" value="odd" onclick="odd()">Odd Series</br>
+<input type="radio" name="r" value="even" onclick="even()">Even Series</br>
+<input type="radio" name="r" value="fabo" onclick="fabo()">Fabonaccii Series</br>
+<input type="radio" name="r" value="fact" onclick="fact()">Factorial</br>
+<input type="radio" name="r" value="pali" onclick="pali()">Palindrome Number</br>
+<input type="radio" name="r" value="pali1" onclick="pali1()">Palindrome String</br>
+</form>
+</body>
+</html>

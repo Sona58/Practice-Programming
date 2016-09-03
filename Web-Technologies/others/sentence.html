@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Sentence Case</title>
+</head>
+<body>
+<script>
+var a=prompt("Enter a String");
+if(a=='')
+{
+	alert("Invalid Input");
+	return false;
+}
+else
+{
+	var b=a;
+	a=a.toLowerCase();
+	a=a.replace(a.charAt(0),a.charAt(0).toUpperCase());
+alert(a.length);
+	for(var i=1;i<a.length;i++)
+	{
+		if(a.charAt(i)==" ")
+			a=a.replace(a.charAt(i+1),a.charAt(i+1).toUpperCase());
+	}
+}
+
+document.write("Old String:<br>"+b);
+document.write("<br><hr>New String:<br>"+a);
+</script>
+</body>
+</html>
