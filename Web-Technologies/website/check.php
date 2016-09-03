@@ -1,0 +1,10 @@
+<?php
+$a=$_POST['loginid'];
+$p=$_POST['pwd'];
+if($p=="helloworld")
+	header("location:/wb/book.php");
+else
+	header("location:/wb/home.php");
+?>
+</body>
+</html>
