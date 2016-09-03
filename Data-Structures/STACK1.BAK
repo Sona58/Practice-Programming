@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<conio.h>
+
+struct stack
+{
+	int no;
+	struct stack *next;
+};
+
+void main()
+{
+	struct stack *temp,*start=NULL,*st,*cur;
+	int choice;
+	clrscr();
+	do
+	{
+		printf("Choose from the menu:\n 1. Push\n 2. Pop\n 3. Display\n 4. Exit\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+				st=(struct stack *)calloc(1,sizeof(struct stack));
+				printf("\nEnter data.\n");
+				scanf("%d",st->no);
+				st->next=start;
+				start=st;
+				break;
+			case 2:
+				if(start!=NULL)
+				{
+					temp=start;
+					start=start->next;
+					free(temp);
+				}
+				else
+					printf("\nList Empty.\n");
+				break;
+			case 3:
+				if(start==NULL)
+					printf("\nList Empty.\n");
+				else
+				{
+					cur=start;
+					while(cur!=NULL)
+					{
+						printf("%d\n",cur->no);
+						cur=cur->next;
+					}
+				}
+				break;
+		}
+	}while(choice<4);
+	getch();
+}

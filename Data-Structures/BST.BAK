@@ -1,0 +1,223 @@
+#include<stdio.h>
+#include<conio.h>
+
+typedef struct node
+{
+	struct node *left;
+	struct node *right;
+	int data;
+}bst;
+
+bst *root,*queue[30];
+int front=-1,rear=-1;
+
+bst *alloc(int n)
+{
+	bst *t;
+	t=(bst *)calloc(1,sizeof(bst));
+	t->data=n;
+	return t;
+}
+
+void ins_node(int n)
+{
+	bst *t,*cur=root,*prev;
+	t=alloc(n);
+	if(root==NULL)
+		root=t;
+	else
+	{
+		while(cur!=NULL)
+		{
+			prev=cur;
+			if(n<=cur->data)
+				cur=cur->left;
+			if(n>cur->data)
+				cur=cur->right;
+		}
+		if(n>prev->data)
+			prev->right=t;
+		if(n<prev->data)
+			prev->left=t;
+
+	}
+}
+
+void build()
+{
+	int n;
+	do
+	{
+		printf("Enter data.\n");
+		scanf("%d",&n);
+		if(n!=0)
+			ins_node(n);
+	}while(n!=0);
+}
+
+void search(int n)
+{
+	bst *cur=root,*t;
+	int fl=0;
+	if(root==NULL)
+		printf("Empty Tree.\n");
+	else
+	{
+		while(cur!=NULL)
+		{
+			if(n==cur->data)
+			{
+				printf("Data Found\n");
+				fl=1;
+				break;
+			}
+			else
+			{
+				if(n<cur->data)
+					cur=cur->left;
+				if(n<cur->data)
+					cur=cur->right;
+			}
+		}
+		if(fl==1)
+			printf("Data Found.\n");
+		else
+			printf("Data Not Found.\n");
+	}
+}
+
+void del_node(int n)
+{
+	bst *cur=root,*t,*prev,*succ,*temp;
+	int fl=0;
+	if(root==NULL)
+		printf("Empty Tree.\n");
+	else
+	{
+		while(cur!=NULL)
+		{
+			if(n==cur->data)
+			{
+				printf("Data Found\n");
+				fl=1;
+				break;
+			}
+			else
+			{
+				if(n<cur->data)
+					cur=cur->left;
+				if(n<cur->data)
+					cur=cur->right;
+			}
+		}
+		if(fl==1)
+		{
+			if(cur->left==NULL && cur->right==NULL)
+			{
+				if(prev->left==cur)
+					prev->left=NULL;
+				if(prev->right==cur)
+					prev->right=NULL;
+				free(cur);
+			}
+			else if(cur->left!=NULL && cur->right==NULL)
+			{
+				if(prev->left==cur)
+					prev->left=cur->left;
+				if(prev->right==cur)
+					prev->right=cur->left;
+				free(cur);
+			}
+			else if(cur->right!=NULL && cur->left==NULL)
+			{
+				if(prev->left==cur)
+					prev->left=cur->right;
+				if(prev->right==cur)
+					prev->right=cur->right;
+				free(cur);
+			}
+			else if(cur->left!=NULL && cur->right!=NULL)
+			{
+				temp=cur;
+				succ=cur->right;
+				while(succ->left!=NULL)
+				{
+					prev=succ;
+					succ=succ->left;
+				}
+				temp->data=succ->data;
+				prev->left=NULL;
+				free(succ);
+			}
+		}
+		else
+			printf("Node Not Found.\n");
+	}
+}
+
+void enq(bst *b)
+{
+	if(front==-1)
+		front=0;
+	queue[rear]=b;
+}
+
+bst *deq()
+{
+	bst *t;
+	if(front>rear)
+		return NULL;
+	t=queue[front];
+	queue[front]=NULL;
+	front++;
+	return t;
+}
+
+void disp()
+{
+	bst *t=root,*prev;
+	front=rear=-1;
+	while(front<=rear)
+	{
+		enq(t->left);
+		enq(t->right);
+		if(t!=NULL)
+			printf("%d",t->data);
+		else
+			printf("  ");
+		prev=t;
+		t=deq();
+		if(t->data<prev->data)
+			printf("\n");
+	}
+}
+
+void main()
+{
+	int cho;
+	clrcsr();
+	do
+	{
+		printf("Choose:\n 1. Insert\n 2. Delete\n 3. Display\n 4. Search\n 5. Exit\n");
+		scanf("%d",&cho);
+		switch(cho)
+		{
+				case 1:
+					ins_node();
+					break;
+
+				case 2:
+					del_node();
+					break;
+
+				case 3:
+					disp();
+					break;
+
+				case 4:
+					search();
+					break;
+		}
+	}while(cho<5);
+	getch();
+}

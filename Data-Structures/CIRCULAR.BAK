@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int size,*st,choice,rear=-1,front=-1,i,temp;
+	clrscr();
+	printf("Enter size.");
+	scanf("%d",&size);
+	st=(int *)calloc(size,2);
+	do
+	{
+		printf("\nChoose:\n 1. Enqueue\n 2. Dequeue\n 3. Display\n 4. Exit\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+				if(rear==(front-1))
+					printf("\nOverflow.\n");
+				else if(rear==(size-1) && front==0)
+					printf("\nOverflow.\n");
+				else
+				{
+					if(rear==(size-1))
+					{
+						rear=0;
+						front=0;
+					}
+					else
+					{
+						rear++;
+						if(front==-1)
+							front=0;
+					}
+					printf("\nEnter Data.");
+					scanf("%d\n",(st+rear));
+				}
+
+				break;
+
+				case 2:
+					if(front==-1 && rear==-1)
+						printf("\nUnderflow.\n");
+					else
+					{
+						temp=*(st+front);
+						*(st+front)=0;
+						if(front==rear)
+						{
+							front=-1;
+							rear=-1;
+						}
+						else
+						{
+							if(front==(size-1) && rear>=0)
+								front=0;
+							else
+								front++;
+						}
+						printf("%d is dequeued.\n",temp);
+					}
+					break;
+
+					case 3:
+						if(front==-1 && rear==-1)
+							printf("\nEmpty Queue.\n");
+						else
+						{
+							for(i=0;i<=rear;i++)
+							printf("\n %d",*(st+i));
+						}
+						break;
+		}
+	}while(choice<4);
+	getch();
+}

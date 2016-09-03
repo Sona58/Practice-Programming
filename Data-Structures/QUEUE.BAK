@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int size,*st,choice,rear=-1,front=-1,t,i;
+	int overflow(int,int);
+	int underflow(int,int);
+	clrcsr();
+	printf("Enter size.\n");
+	scanf("%d",&size);
+	st=(int *)calloc(size,2);
+	do
+	{
+		printf("Choose from the menu:\n 1. Push\n 2. Pop\n 3. Display\n 4. Exit\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+				if(overflow(rear,size))
+					printf("\nOverflow.\n");
+				else
+				{
+					rear++;
+					scanf("%d",(st+rear));
+					if(front==-1)
+						front=0;
+				}
+				break;
+			case 2:
+				if(underflow(front,size))
+					printf("\nUnderflow.\n");
+				else
+				{
+					t=*(st+front);
+					front++;
+					printf("%d is popped out.\n",t);
+					if(front>rear)
+					{
+						front=-1;
+						rear=-1;
+					}
+				}
+				break;
+			case 3:
+				if(underflow(front,size))
+					printf("\nUnderflow.\n");
+				else
+				{
+					for(i=front;i<=rear;i++)
+						printf("\n %d",*(st+i));
+				}
+				break;
+		}
+	}while(choice<4);
+}
+
+int overflow(int R,int S)
+{
+	return(R==(S-1)?1:0);
+}
+
+int underflow(int F,int S)
+{
+	return(F==-1?1:0);
+}

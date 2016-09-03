@@ -1,0 +1,116 @@
+#include<stdio.h>
+#include<conio.h>
+
+struct que
+{
+	int data;
+	int prio;
+	int order;
+};
+
+void main()
+{
+	int front=-1,rear=-1,pos,choice,size,i;
+	struct que *q,temp;
+	int overflow(int,int);
+	int underflow(int);
+	int find(struct que *,int,int,int);
+	clrscr();
+	printf("Enter size.\n");
+	scanf("%d",&size);
+	q=(struct que *)calloc(1,sizeof(struct que));
+	do
+	{
+		printf("Choose:/n 1. Enqueue\n 2. Dequeue\n 3. Display\n 4. Exit\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+				if(overflow(rear,size))
+					printf("Overflow");
+				else
+				{
+					printf("Enter Priority.");
+					scanf("%d",&temp.prio);
+					printf("Enter Order.");
+					scanf("%d",&temp.order);
+					if(rear==-1)
+					{
+						rear++;
+						front=0;
+						q[rear]=temp;
+					}
+					else
+					{
+						pos=find(q,rear,temp.prio,temp.order);
+						if(pos>rear)
+						{
+							rear++;
+							q[rear]=temp;
+						}
+						else
+						{
+							rear++;
+							for(i=rear;i>pos;i--)
+								q[i]=q[i-1];
+							q[pos]=temp;
+						}
+					}
+				}
+				break;
+			case 2:
+				if(underflow(front))
+					printf("\nUnderflow.\n");
+				else
+				{
+					temp=q[front];
+					front++;
+					printf("\n%d is dequeued.\n",temp);
+					if(front>rear)
+					{
+						front=-1;
+						rear=-1;
+					}
+				}
+				break;
+
+			case 3:
+				if(underflow(front))
+					printf("\nUnderflow.\n");
+				else
+				{
+					for(i=front;i<=rear;i++)
+					{
+						printf("\n %d",q[i].data);
+						pritnf("\n %d",q[i].prio);
+						printf("\n %d",q[i].order);
+					}
+				}
+				break;
+		}
+	}while(choice<4);
+}
+
+int overflow(int R,int S)
+{
+	return(R==(S-1)?1:0);
+}
+
+int underflow(int F)
+{
+	return(F==-1?1:0);
+}
+
+int find(struct que *q1,int R,int P,int O)
+{
+	int i;
+	for(i=0;i<=R;i++)
+	{
+		if(q1[i].prio<P)
+			return i;
+		else if(q1[i].prio==P && q1[i].order>0)
+			return i;
+
+	}
+	return i;
+}

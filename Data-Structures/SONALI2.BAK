@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int i,j,t,ele,n=5;
+	int a[5];
+	clrscr();
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	for(i=0;i<n-1;i++)
+	{
+		ele=a[i+1];
+		for(j=1;j>=0;j--)
+		{
+			if(ele<a[j])
+				a[j+1]=a[j];
+			if(ele>a[j])
+				break;
+		}
+		a[j+1]=ele;
+	}
+	for(i=0;i<n;i++)
+		printf("%d",a[i]);
+
+	getch();
+}
