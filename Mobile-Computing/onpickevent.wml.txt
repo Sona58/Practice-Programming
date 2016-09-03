@@ -1,0 +1,31 @@
+/**** Example of ONPICK Event In WML ****/ 
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
+"http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+<card id="one" title="Make ur choice">
+<p>
+<select name="choice">
+<option onpick="#p1" value="BBA">BBA</option>
+<option onpick="#p2" value="BCA">BCA</option>
+<option onpick="#p3" value="Msc">Msc</option>
+</select>
+</p>
+</card>
+<card id="p1" title="Ur choice">
+<p>
+Your choice is BBA
+</p>
+</card>
+
+<card id="p2" title="Ur choice">
+<p>
+Your choice is BCA
+</p>
+</card>
+<card id="p3" title="Ur choice">
+<p>
+Your choice is Msc
+</p>
+</card>
+</wml>
