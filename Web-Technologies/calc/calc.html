@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>Calculator</title>
+</head>
+<body>
+<!--script start-->
+
+<script>
+function check()
+{
+
+if(isNaN(document.f1.t1.value))
+{
+	alert("Invalid First Input. Please Enter only digits.");
+	document.getElementById('t1').value="0";
+	document.getElementById('t3').value="0";
+	return false;
+}
+if(isNaN(document.f1.t2.value))
+{
+	alert("Invalid Second Input. Please Enter only digits.");
+	document.getElementById('t2').value="0";
+	document.getElementById('t3').value="0";
+	return false;
+}
+
+}
+
+function add()
+{
+var a=document.f1.t1.value;
+
+var b=document.f1.t2.value;
+
+if(a=="0" && b=="0")
+{
+alert("Enter atleast one input.");
+return false;
+}
+ 
+var c=+a + +b;
+document.getElementById('t3').value=c;
+	
+}
+function sub()
+{
+var a=document.f1.t1.value;
+
+var b=document.f1.t2.value;
+
+if(a=="0" && b=="0")
+{
+alert("Enter atleast one input.");
+return false;
+}
+var c=+a - +b;
+document.getElementById('t3').value=c;
+	
+}
+function mul()
+{
+var a=document.f1.t1.value;
+
+var b=document.f1.t2.value;
+
+if(a=="0" && b=="0")
+{
+alert("Enter atleast one input.");
+return false;
+}
+var c=+a * +b;
+document.getElementById('t3').value=c;
+	
+}
+function div()
+{
+var a=document.f1.t1.value;
+
+var b=document.f1.t2.value;
+
+if(a=="0" && b=="0")
+{
+alert("Enter atleast one input.");
+return false;
+}
+var c=+a / +b;
+document.getElementById('t3').value=c;
+	
+}
+
+</script>
+
+<!--script end-->
+<center>
+<form name="f1">
+<table border="1" cellpadding="0" cellspacing="0" width="30%" bordercolor="#0000FF">
+<tr bgcolor="#0000FF">
+<td><font color="#FFFFFF"><b>&nbsp;&nbsp;Calculator</b></font></td>
+</tr>
+<tr bgcolor="#ECE8D6"><td>
+<table border="0" cellpadding="10" cellspacing="0" width="100%">
+<tr>
+<td colspan="2"><label for="t1"><b>Enter First Number:</b></label></td>
+<td colspan="2"><input id="t1" type="text" name="t1" value="0" onchange="check()"/></td>
+</tr>
+<tr>
+<td colspan="2"><label for="t2"><b>Enter Second Number:</b></label></td>
+<td colspan="2"><input id="t2" type="text" name="t2" value="0" onchange="check()"/></td> 
+</tr>
+<tr>
+<td colspan="2"><label for="t3"><b>Result:</b></label></td>
+<td colspan="2"><input type="text" id="t3" name="t3"  value="0" readonly/></td>
+</tr>
+<tr>
+<td><input type="button" name="b1" value="+" onclick="add()"/></td>
+<td><input type="button" name="b2" value="-" onclick="sub()"/></td>
+<td><input type="button" name="b3" value="*" onclick="mul()"/></td>
+<td><input type="button" name="b4" value="/" onclick="div()"/></td>
+</tr>
+</table>
+</td>
+</tr></table>
+</form>
+
+</center>
+</body>
+</html>
